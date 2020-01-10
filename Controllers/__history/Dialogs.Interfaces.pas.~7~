@@ -1,0 +1,11 @@
+unit Dialogs.Interfaces;
+
+interface
+  type
+    iDialogs = interface
+      ['{E61EB251-D5A9-4B05-B212-9241416513D5}']
+    end;
+
+implementation
+
+end.

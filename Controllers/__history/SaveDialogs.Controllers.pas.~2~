@@ -1,0 +1,37 @@
+unit SaveDialogs.Controllers;
+
+interface
+
+uses
+  Dialogs.Interfaces;
+
+type
+  TSaveDialogs = class(TInterfacedObject, iDialogs)
+  private
+  public
+    constructor Create;
+    destructor Destroy; override;
+    class function New: iDialogs;
+  end;
+
+implementation
+
+{ TSaveDialogs }
+
+constructor TSaveDialogs.Create;
+begin
+
+end;
+
+destructor TSaveDialogs.Destroy;
+begin
+
+  inherited;
+end;
+
+class function TSaveDialogs.New: iDialogs;
+begin
+  Result := Self.Create;
+end;
+
+end.

@@ -1,0 +1,80 @@
+unit Dialogs.Method.SaveDialogs;
+
+interface
+
+uses
+  Dialogs.Interfaces, Vcl.Dialogs;
+
+type
+  TSaveDialogs = class(TInterfacedObject, iDialogs, iDialogParams, iDialogFilter)
+  private
+    FSaveDialog: TSaveDialog;
+  public
+    function Title(Value: String): iDialogParams;
+    function InitialDir(Value: String): iDialogParams;
+    function FilterIndex(Value: Integer): iDialogParams;
+
+    function AddFilter : iDialogFilter;
+    function Params: iDialogParams;
+
+    function Execute(var pNameFile: String): Boolean;
+    constructor Create;
+    destructor Destroy; override;
+    class function New: iDialogs;
+  end;
+
+implementation
+
+{ TSaveDialogs }
+
+function TSaveDialogs.AddFilter: iDialogFilter;
+begin
+  Result := Self;
+end;
+
+constructor TSaveDialogs.Create;
+begin
+  FSaveDialog := TSaveDialog.Create(nil);
+end;
+
+destructor TSaveDialogs.Destroy;
+begin
+  FSaveDialog.DisposeOf;
+  inherited;
+end;
+
+class function TSaveDialogs.New: iDialogs;
+begin
+  Result := Self.Create;
+end;
+
+function TSaveDialogs.Execute(var pNameFile: String): Boolean;
+begin
+  Result := FSaveDialog.Execute;
+  pNameFile := FSaveDialog.FileName;
+end;
+
+function TSaveDialogs.FilterIndex(Value: Integer): iDialogParams;
+begin
+  Result := Self;
+  FSaveDialog.FilterIndex := Value;
+end;
+
+function TSaveDialogs.InitialDir(Value: String): iDialogParams;
+begin
+  Result := Self;
+  FSaveDialog.InitialDir := Value;
+end;
+
+function TSaveDialogs.Title(Value: String): iDialogParams;
+begin
+  Result := Self;
+  FSaveDialog.Title := Value;
+end;
+
+function TSaveDialogs.Params: iDialogParams;
+begin
+  Result := Self;
+end;
+
+end.

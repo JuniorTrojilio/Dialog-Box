@@ -1,0 +1,38 @@
+unit Dialogs.Method.OpenDialog;
+
+interface
+
+uses
+  Dialogs.Interfaces, Vcl.Dialogs;
+
+type
+  TOpenDialogs = class(TInterfacedObject, iDialogs)
+  private
+    FOpenDialog: TOpenDialog;
+  public
+    constructor Create;
+    destructor Destroy; override;
+    class function New: iDialogs;
+  end;
+
+implementation
+
+{ TOpenDialogs }
+
+constructor TOpenDialogs.Create;
+begin
+  FOpenDialog:= TOpenDialog.Create;
+end;
+
+destructor TOpenDialogs.Destroy;
+begin
+  FOpenDialog.DisposeOf;
+  inherited;
+end;
+
+class function TOpenDialogs.New: iDialogs;
+begin
+  Result := Self.Create;
+end;
+
+end.

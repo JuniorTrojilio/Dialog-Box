@@ -1,0 +1,47 @@
+unit Dialog.Controllers.Factory;
+
+interface
+
+uses
+  Dialog.Controllers.Factory.Interfaces, Dialogs.Controllers.Method.Interfaces,
+  Dialogs.Controllers.Method.OpenDialogs, Dialogs.Controllers.Method.SaveDialogs;
+
+type
+  TDialogFactory = class(TInterfacedObject, iDialogFactory)
+  private
+  public
+    function Dialogs(TypeDialog: TTypeDialogs): iDialogs;
+    constructor Create;
+    destructor Destroy; override;
+    class function New: iDialogFactory;
+  end;
+
+implementation
+
+{ TDialogFactory }
+
+constructor TDialogFactory.Create;
+begin
+
+end;
+
+destructor TDialogFactory.Destroy;
+begin
+
+  inherited;
+end;
+
+function TDialogFactory.Dialogs(TypeDialog: TTypeDialogs): iDialogs;
+begin
+  case TypeDialog of
+    tpOpenDialog: Result := TOpenDialogs.New;
+    tpSaveDialog: Result := TSaveDialogs.New;
+  end;
+end;
+
+class function TDialogFactory.New: iDialogFactory;
+begin
+  Result := Self.Create;
+end;
+
+end.

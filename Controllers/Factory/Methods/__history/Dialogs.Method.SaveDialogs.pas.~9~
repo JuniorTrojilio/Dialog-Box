@@ -1,0 +1,120 @@
+unit Dialogs.Method.SaveDialogs;
+
+interface
+
+uses
+  Dialogs.Interfaces, Vcl.Dialogs, System.Classes;
+
+type
+  TSaveDialogs = class(TInterfacedObject, iDialogs, iDialogParams,
+    iDialogFilter)
+  private
+    FSaveDialog: TSaveDialog;
+    FFilter: TStringList;
+  public
+    function Title(Value: String): iDialogParams;
+    function InitialDir(Value: String): iDialogParams;
+    function FilterIndex(Value: Integer): iDialogParams;
+
+    function AddXML: iDialogFilter;
+    function AddPDF: iDialogFilter;
+    function AddTXT: iDialogFilter;
+    function AddAll: iDialogFilter;
+    function AddFilter: iDialogFilter;
+
+    function EndFilter: iDialogParams;
+    function Params: iDialogParams;
+
+    function Execute(var pNameFile: String): Boolean;
+    constructor Create;
+    destructor Destroy; override;
+    class function New: iDialogs;
+  end;
+
+implementation
+
+{ TSaveDialogs }
+
+constructor TSaveDialogs.Create;
+begin
+  FSaveDialog := TSaveDialog.Create(nil);
+  FFilter := TStringList.Create;
+end;
+
+destructor TSaveDialogs.Destroy;
+begin
+  FSaveDialog.DisposeOf;
+  FFilter.DisposeOf;
+  inherited;
+end;
+
+class function TSaveDialogs.New: iDialogs;
+begin
+  Result := Self.Create;
+end;
+
+function TSaveDialogs.AddAll: iDialogFilter;
+begin
+  Result := Self;
+  FFilter.Add('Todos os Arquivos (*.*) | * .*|');
+end;
+
+function TSaveDialogs.AddPDF: iDialogFilter;
+begin
+  Result := Self;
+  FFilter.Add('Arquivos PDF (*.pdf) | * .pdf|');
+end;
+
+function TSaveDialogs.AddTXT: iDialogFilter;
+begin
+  Result := Self;
+  FFilter.Add('Arquivos TXT (*.txt) | * .txt|');
+end;
+
+function TSaveDialogs.AddXML: iDialogFilter;
+begin
+  Result := Self;
+  FFilter.Add('Arquivos XML (*.xml) | * .xml|');
+end;
+
+function TSaveDialogs.AddFilter: iDialogFilter;
+begin
+  Result := Self;
+end;
+
+function TSaveDialogs.EndFilter: iDialogParams;
+begin
+  Result := Self;
+  FSaveDialog.Filter := FFilter.Text;
+end;
+
+function TSaveDialogs.Execute(var pNameFile: String): Boolean;
+begin
+  Result := FSaveDialog.Execute;
+  pNameFile := FSaveDialog.FileName;
+end;
+
+function TSaveDialogs.FilterIndex(Value: Integer): iDialogParams;
+begin
+  Result := Self;
+  FSaveDialog.FilterIndex := Value;
+end;
+
+function TSaveDialogs.InitialDir(Value: String): iDialogParams;
+begin
+  Result := Self;
+  FSaveDialog.InitialDir := Value;
+end;
+
+function TSaveDialogs.Title(Value: String): iDialogParams;
+begin
+  Result := Self;
+  FSaveDialog.Title := Value;
+end;
+
+function TSaveDialogs.Params: iDialogParams;
+begin
+  Result := Self;
+end;
+
+end.

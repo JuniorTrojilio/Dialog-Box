@@ -1,0 +1,19 @@
+unit Dialogs.Interfaces;
+
+interface
+
+uses
+  Vcl.Dialogs;
+
+type
+  iDialogs = interface
+    ['{244C5EC4-DBB4-4562-82F3-92384415D8E0}']
+    function DefaultExt(Value: String): iDialogs;
+    function FilterIndex(Value: Integer): iDialogs;
+    function InitialDir(Value: String): iDialogs;
+    function AddOptions(Value: TOpenOptions): iDialogs;
+  end;
+
+implementation
+
+end.

@@ -1,0 +1,42 @@
+unit Dialogs.SaveDialogs.Controllers;
+
+interface
+
+uses
+  Dialogs.Interfaces, Vcl.Dialogs;
+
+type
+  TSaveDialogs = class(TInterfacedObject, iDialogs)
+  private
+    FSaveDialogs: TSaveDialogs;
+  public
+    function DefaultExt(Value: String): iDialogs;
+    function FilterIndex(Value: Integer): iDialogs;
+    function InitialDir(Value: String): iDialogs;
+    function AddOptions(Value: TOpenOptions): iDialogs;
+    constructor Create;
+    destructor Destroy; override;
+    class function New: iDialogs;
+  end;
+
+implementation
+
+{ TSaveDialogs }
+
+constructor TSaveDialogs.Create;
+begin
+
+end;
+
+destructor TSaveDialogs.Destroy;
+begin
+
+  inherited;
+end;
+
+class function TSaveDialogs.New: iDialogs;
+begin
+  Result := Self.Create;
+end;
+
+end.

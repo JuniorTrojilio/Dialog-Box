@@ -1,0 +1,80 @@
+unit Dialogs.Method.OpenDialog;
+
+interface
+
+uses
+  Dialogs.Interfaces, Vcl.Dialogs;
+
+type
+  TOpenDialogs = class(TInterfacedObject, iDialogs, iDialogParams, iDialogFilter)
+  private
+    FOpenDialog: TOpenDialog;
+  public
+    function Title(Value: String): iDialogParams;
+    function InitialDir(Value: String): iDialogParams;
+    function FilterIndex(Value: Integer): iDialogParams;
+
+    function AddFilter : iDialogFilter;
+    function Params: iDialogParams;
+
+    function Execute(var pNameFile: String): Boolean;
+    constructor Create;
+    destructor Destroy; override;
+    class function New: iDialogs;
+  end;
+
+implementation
+
+{ TOpenDialogs }
+
+function TOpenDialogs.AddFilter: iDialogFilter;
+begin
+  Result := Self;
+end;
+
+constructor TOpenDialogs.Create;
+begin
+  FOpenDialog := TOpenDialog.Create(nil);
+end;
+
+destructor TOpenDialogs.Destroy;
+begin
+  FOpenDialog.DisposeOf;
+  inherited;
+end;
+
+class function TOpenDialogs.New: iDialogs;
+begin
+  Result := Self.Create;
+end;
+
+function TOpenDialogs.Execute(var pNameFile: String): Boolean;
+begin
+  Result := FOpenDialog.Execute;
+  pNameFile := FOpenDialog.FileName;
+end;
+
+function TOpenDialogs.FilterIndex(Value: Integer): iDialogParams;
+begin
+  Result := Self;
+  FOpenDialog.FilterIndex := Value;
+end;
+
+function TOpenDialogs.InitialDir(Value: String): iDialogParams;
+begin
+  Result := Self;
+  FOpenDialog.InitialDir := Value;
+end;
+
+function TOpenDialogs.Title(Value: String): iDialogParams;
+begin
+  Result := Self;
+  FOpenDialog.Title := Value;
+end;
+
+function TOpenDialogs.Params: iDialogParams;
+begin
+  Result := Self;
+end;
+
+end.

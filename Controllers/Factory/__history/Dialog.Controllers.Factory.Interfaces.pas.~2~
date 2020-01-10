@@ -1,0 +1,7 @@
+unit Dialog.Controllers.Factory.Interfaces;
+
+interface
+
+implementation
+
+end.

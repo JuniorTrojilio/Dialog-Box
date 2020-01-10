@@ -1,0 +1,22 @@
+unit Dialogs.Interfaces;
+
+interface
+
+type
+
+  iDialogParams = interface
+    function Title(Value: String): iDialogParams;
+    function InitialDir(Value: String): iDialogParams;
+    function FilterIndex(Value: String);
+    // function AddFilter;
+    // function AddOptions;
+  end;
+
+  iDialogs = interface
+    ['{E61EB251-D5A9-4B05-B212-9241416513D5}']
+    function Params : iDialogParams;
+  end;
+
+implementation
+
+end.

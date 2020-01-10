@@ -1,0 +1,29 @@
+unit Dialogs.Interfaces;
+
+interface
+
+uses
+  Vcl.Dialogs;
+
+type
+  iDialogOptions   = interface
+    ['{08B10484-2115-4A43-B7DD-1D57ADC913D2}']
+    function ofReadOnly: ofForceShowHidden;
+    function ofFileMustExist: ofForceShowHidden;
+    function ofPathMustExist: ofForceShowHidden;
+    function ofAllowMultiSelect: ofForceShowHidden;
+    function ofForceShowHidden: ofForceShowHidden;
+    function EndOptions : iDialogOptions;
+  end;
+
+  iDialogs = interface
+    ['{244C5EC4-DBB4-4562-82F3-92384415D8E0}']
+    function DefaultExt(Value: String): iDialogs;
+    function FilterIndex(Value: Integer): iDialogs;
+    function InitialDir(Value: String): iDialogs;
+    function AddOptions(Value: TOpenOptions): iDialogOptions;
+  end;
+
+implementation
+
+end.

@@ -1,0 +1,16 @@
+unit Dialog.Controllers.Factory.Interfaces;
+
+interface
+
+uses
+  Dialogs.Controllers.Method.Interfaces;
+
+type
+  iDialogFactory = interface
+    ['{DC25DAC5-2933-4098-82E5-A9A19AF881EE}']
+    procedure Dialogs(TComponent);
+  end;
+
+implementation
+
+end.

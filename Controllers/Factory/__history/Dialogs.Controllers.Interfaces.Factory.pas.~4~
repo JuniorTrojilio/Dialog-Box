@@ -1,0 +1,16 @@
+unit Dialogs.Controllers.Interfaces.Factory;
+
+interface
+
+uses
+  Vcl.Dialogs, System.Classes;
+  type
+
+  iDialogFactory = interface
+    ['{94F45C1D-1264-4598-9083-75B09B71337B}']
+    function Execute(var pNameFile: TStrings): Boolean;
+  end;
+
+implementation
+
+end.
