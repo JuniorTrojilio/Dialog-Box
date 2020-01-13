@@ -1,7 +1,7 @@
 <h1>Dialog Box ⛏ </h1> 
 
 Visando diminuir o acoplamento e extender a vida útil dos softwares 
-elaborei este pequeno utilizando os padrões de projeto Abstract Factory, Composite e Factory Method.
+elaborei este pequeno projeto utilizando os padrões de projeto Abstract Factory, Composite e Factory Method.
 
 <b>TDialogFactory</b> é a fabrica de objetos, através do método stático <b>New</b> ela pode compor 
 tanto um <b>Open Dialog</b> quanto um <b>Save Dialog</b>.
