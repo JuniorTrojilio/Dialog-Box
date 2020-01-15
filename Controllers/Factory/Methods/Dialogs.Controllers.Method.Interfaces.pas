@@ -23,11 +23,13 @@ type
     function AddPDF: iDialogFilter;
     function AddTXT: iDialogFilter;
     function AddAll: iDialogFilter;
+    function AddZip: iDialogFilter;
     function EndFilter: iDialogParams;
   end;
 
   iDialogParams = interface
     function Title(Value: String): iDialogParams;
+    function DefaultExt(Value : String): iDialogParams;
     function InitialDir(Value: String): iDialogParams;
     function FilterIndex(Value: Integer): iDialogParams;
     function AddFilter: iDialogFilter;
@@ -38,7 +40,9 @@ type
   iDialogs = interface
     ['{E61EB251-D5A9-4B05-B212-9241416513D5}']
     function Params: iDialogParams;
-    function Execute(var pNameFile: TStrings): Boolean;
+    function Execute(var pNameFile: TStrings): Boolean; overload;
+    function Execute(var pNameFile: String): Boolean; overload;
+    function Execute : String; overload;
   end;
 
 implementation

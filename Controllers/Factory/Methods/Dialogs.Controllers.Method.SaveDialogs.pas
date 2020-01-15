@@ -21,6 +21,7 @@ type
     function Title(Value: String): iDialogParams;
     function InitialDir(Value: String): iDialogParams;
     function FilterIndex(Value: Integer): iDialogParams;
+    function DefaultExt(Value : String): iDialogParams;
 
     function ReadOnly: iDialogOption;
     function AllowMultiSelect: iDialogOption;
@@ -31,6 +32,7 @@ type
     function AddPDF: iDialogFilter;
     function AddTXT: iDialogFilter;
     function AddAll: iDialogFilter;
+    function AddZip: iDialogFilter;
     function AddFilter: iDialogFilter;
 
     function AddOption: iDialogOption;
@@ -39,7 +41,9 @@ type
     function Params: iDialogParams;
     function EndParams: iDialogs;
 
-    function Execute(var pNameFile: TStrings): Boolean;
+    function Execute(var pNameFile: TStrings): Boolean; overload;
+    function Execute(var pNameFile: String): Boolean; overload;
+    function Execute: String; overload;
 
     constructor Create;
     destructor Destroy; override;
@@ -55,6 +59,12 @@ begin
   FSaveDialog := TSaveDialog.Create(nil);
   FSaveDialog.Filter := '';
   FFilter := TStringList.Create;
+end;
+
+function TSaveDialogs.DefaultExt(Value: String): iDialogParams;
+begin
+  Result := Self;
+  FSaveDialog.DefaultExt := Value;
 end;
 
 destructor TSaveDialogs.Destroy;
@@ -93,6 +103,12 @@ begin
   FFilter.Add('Arquivos XML (*.xml) | * .xml|');
 end;
 
+function TSaveDialogs.AddZip: iDialogFilter;
+begin
+  Result := Self;
+  FFilter.Add('Arquivos ZIP (*.zip) | * .zip|');
+end;
+
 function TSaveDialogs.AddFilter: iDialogFilter;
 begin
   Result := Self;
@@ -112,6 +128,18 @@ end;
 function TSaveDialogs.EndParams: iDialogs;
 begin
   Result := Self;
+end;
+
+function TSaveDialogs.Execute: String;
+begin
+  FSaveDialog.Execute;
+  Result := FSaveDialog.FileName;
+end;
+
+function TSaveDialogs.Execute(var pNameFile: String): Boolean;
+begin
+  Result := FSaveDialog.Execute;
+  pNameFile := FSaveDialog.FileName;
 end;
 
 function TSaveDialogs.Execute(var pNameFile: TStrings): Boolean;
