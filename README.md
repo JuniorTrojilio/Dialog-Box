@@ -33,6 +33,7 @@ São chamados através do método de composição <b>AddOptions</b>.
 </div>
 
 <div>
+<br>
 <b>New :</b> Adicionado parâmetro <b>DefaultExt</b> responsável por definir a extensão do arquivo a ser salvo, ele recebe a extensão do arquivo no formato String : 'txt', 'pdf', 'xml', 'zip' e etc... 
 </div>
 O método Execute é finalmente chamado, deve-se fornecer uma variavel do tipo container para receber o(s) valor(es)
