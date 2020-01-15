@@ -32,6 +32,8 @@ como são pouco conhecidos adicionei os que são mais utilizados, são eles:
 São chamados através do método de composição <b>AddOptions</b>.
 </div>
 
+<b>New :</b> Adicionado parâmetro <b>DefaultExt</b> responsável por definir a extensão do arquivo a ser salvo, ele recebe a extensão do arquivo no formato String : 'txt', 'pdf', 'xml', 'zip' e etc... 
+
 O método Execute é finalmente chamado, deve-se fornecer uma variavel do tipo container para receber o(s) valor(es)
 do(s) arquivo(s) selecionado(s), ele retornará um booleano informando se a ação foi executada com sucesso.
 
